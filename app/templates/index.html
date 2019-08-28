@@ -8,7 +8,7 @@
             min-width: 200px;
             max-width: 980px;
             margin: 0 auto;
-            padding: 45px;
+            padding: 15px;
         }
 
         @media (max-width: 767px) {
@@ -18,24 +18,25 @@
         }
     </style>
     <article class="markdown-body ">
-        <h1>pyecharts</h1>
-        <p><a href="https://travis-ci.org/chenjiandongx/pyecharts"><img alt="Build Status" src="https://travis-ci.org/chenjiandongx/pyecharts.svg?branch=master" /></a> <a href="https://codecov.io/gh/chenjiandongx/pyecharts"><img alt="codecov" src="https://codecov.io/gh/chenjiandongx/pyecharts/branch/master/graph/badge.svg" /></a> <a href="https://badge.fury.io/py/pyecharts"><img alt="PyPI version" src="https://badge.fury.io/py/pyecharts.svg" /></a> <a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a></p>
+        <h1>坪山民生诉求分析</h1>
         <h2>关于项目</h2>
-        <p>pyecharts 是一个用于生成 Echarts 图表的类库。<a href="https://github.com/ecomfe/echarts">Echarts</a> 是百度开源的一个数据可视化 JS 库。用 Echarts 生成的图可视化效果非常棒，为了与 Python 进行对接，方便在 Python 中直接使用数据生成图，我写了这个项目。</p>
-        <p>本网站只是用于展示使用 pyecharts 生成的图的效果，如果您对项目感兴趣，可前往 <a href="https://github.com/pyecharts/pyecharts">pyecharts/pyecharts</a> 了解更多内容</p>
-        <p>BTW: 这个网站是用 Flask+pyecharts 写的，并部署在 Heroku。本网站源码在 <a href="https://github.com/pyecharts/pyecharts-app">pyecharts/pyecharts-app</a> </p>
-        <h2>关于作者</h2>
-        <p>目前项目由我和另外两位开发者三人共同维护
+        <p>我们使用的数据主要是深圳市坪山区人民生活反馈数据，其中包括过去13个月内公众通过微信，邮箱，热线，微博等渠道报道的30,000多起投诉和建议事件。有关每个事件的来源，时间和类别的详细信息。</p>
         <ul>
-            <li> <a href="https://github.com/chenjiandongx">https://github.com/chenjiandongx</a></li>
-            <li> <a href="https://github.com/chfw">https://github.com/chfw</a></li>
-            <li> <a href="https://github.com/kinegratii">https://github.com/kinegratii</a></li>
+            <li>从数据可视化的角度了解数据各个维度，并制作网站来监控数据变化情况，网站是用 Flask + pyecharts 制作。</li>
+            <li>另外，从事件的结案耗时、关联规则，社区之间的相关性和新闻与事件的联系等角度分析。</li>
         </ul>
-        <p>在这里也要感谢所有对 pyecharts 做出过贡献的人，是你们帮助和推动了项目的发展，衷心感谢！</p>
+        </p>
+
+        <h2>关于团队</h2>
+        <p>团队是由来自香港中文大学（深圳）数据科学项目的六名硕士研究生组成，成员分别为甄赏（队长）、雷鸣、陈力群、刘雅倩、张灿、王涵艺
+        <ul>
+            <li> <a href="https://github.com/seanzhen">https://github.com/seanzhen/</a></li>
+        </ul>
+        <p>我们来自不同地区，有着共同的学习目标聚集到深圳这个蓬勃发展的城市，在完成学业项目的同时，我们希望将所学的知识运用到实际生活当中。深圳开放数据比赛为我们提供了一个用真实数据体现数学模型意义的机会，希望通过此次比赛我们可以用数据为坪山区民生实际发展贡献一份力量！</p>
     </article>
     <footer class="container-fluid foot-wrap">
         <p align="center" style="margin-top: 20px;color:#878B91;">
-            Copyright &copy; 2017 chenjiandongx
+            Copyright &copy; 2019 Sean Zhen
         </p>
     </footer>
 {% endblock %}
