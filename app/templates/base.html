@@ -1,10 +1,10 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}pyecharts - {{ title }}{% endblock %}
+{% block title %}诉求分析 - {{ title }}{% endblock %}
 
 {% block head %}
     {{super()}}
-    <link rel="icon" href="{{ url_for('static', filename='images/fav.ico')}}" type="image/x-coin">
+    <link rel="icon" href="{{ url_for('static', filename='images/test.png')}}" type="image/x-coin">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" type="text/css">
     <title>Proudly presented by ECharts</title>
 	{% for jsfile_name in script_list %}
@@ -22,12 +22,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">pyecharts</a>
+                <a class="navbar-brand" href="/">诉求分析</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">直角坐标系
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据探索性分析
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('bar') }}">柱状图</a> </li>
                                 <li><a href="{{ url_for('boxplot') }}">箱线图</a> </li>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他坐标系
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">超时预测
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('polar') }}">极坐标系</a> </li>
                                 <li><a href="{{ url_for('parallel') }}">平行坐标系</a> </li>
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">3D图
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关联分析
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('bar3d') }}">3D 柱状图</a> </li>
                                 <li><a href="{{ url_for('scatter3d') }}">3D 散点图</a> </li>
@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">地图
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">社区聚类
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('geo') }}">地理坐标系</a> </li>
                                 <li><a href="{{ url_for('geolines') }}">地理坐标系线图</a> </li>
@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">其他
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">新闻与事件
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('pie') }}">饼图</a> </li>
                                 <li><a href="{{ url_for('treemap') }}">树图</a> </li>
@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户自定义
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">总结
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url_for('grid') }}">Grid 类</a> </li>
                                 <li><a href="{{ url_for('overlap') }}">Overlap 类</a> </li>
@@ -110,7 +110,7 @@
     </div>
     <footer class="container-fluid foot-wrap">
         <p align="center" style="margin-top: 20px;color:#878B91;">
-            Copyright &copy; 2017 chenjiandongx
+            Copyright &copy; 2019 Sean Zhen
         </p>
     </footer>
 {% endblock %}
