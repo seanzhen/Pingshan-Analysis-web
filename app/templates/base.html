@@ -4,7 +4,7 @@
 
 {% block head %}
     {{super()}}
-    <link rel="icon" href="{{ url_for('static', filename='images/test.png')}}" type="image/x-coin">
+    <link rel="icon" href="{{ url_for('static', filename='images/bear.png')}}" type="image/x-coin">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" type="text/css">
     <title>Proudly presented by ECharts</title>
 	{% for jsfile_name in script_list %}
@@ -29,64 +29,45 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据探索性分析
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('bar') }}">柱状图</a> </li>
-                                <li><a href="{{ url_for('boxplot') }}">箱线图</a> </li>
-                                <li><a href="{{ url_for('line') }}">折线图</a> </li>
-                                <li><a href="{{ url_for('kline') }}">K 线图</a> </li>
-                                <li><a href="{{ url_for('scatter') }}">散点图</a> </li>
-                                <li><a href="{{ url_for('effectscatter') }}">动态散点图</a> </li>
-                                <li><a href="{{ url_for('heatmap') }}">热力图</a> </li>
-                                <li><a href="{{ url_for('sankey') }}">桑基图</a> </li>
-                                <li><a href="{{ url_for('themeriver') }}">主题河流图</a> </li>
+                                <li><a href="{{ url_for('bar') }}">事件类型</a> </li>
+                                <li><a href="{{ url_for('boxplot') }}">社区街道与事件</a> </li>
+                                <li><a href="{{ url_for('kline') }}">事件趋势</a> </li>
+                                <li><a href="{{ url_for('scatter') }}">各社区事件趋势</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">超时预测
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('polar') }}">极坐标系</a> </li>
-                                <li><a href="{{ url_for('parallel') }}">平行坐标系</a> </li>
+                                <li><a href="{{ url_for('polar') }}">XGBoost模型</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">关联分析
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('bar3d') }}">3D 柱状图</a> </li>
-                                <li><a href="{{ url_for('scatter3d') }}">3D 散点图</a> </li>
-                                <li><a href="{{ url_for('line3d') }}">3D 折线图</a> </li>
+                                <li><a href="{{ url_for('bar3d') }}">Apriori关联规则</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">社区聚类
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('geo') }}">地理坐标系</a> </li>
-                                <li><a href="{{ url_for('geolines') }}">地理坐标系线图</a> </li>
-                                <li><a href="{{ url_for('map') }}">地图</a> </li>
+                                <li><a href="{{ url_for('geo') }}">K-means聚类</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">新闻与事件
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('pie') }}">饼图</a> </li>
-                                <li><a href="{{ url_for('treemap') }}">树图</a> </li>
-                                <li><a href="{{ url_for('graph') }}">关系图</a> </li>
-                                <li><a href="{{ url_for('funnel') }}">漏斗图</a> </li>
-                                <li><a href="{{ url_for('gauge') }}">仪表盘</a> </li>
-                                <li><a href="{{ url_for('radar') }}">雷达图</a> </li>
-                                <li><a href="{{ url_for('liquid') }}">水球图</a> </li>
-                                <li><a href="{{ url_for('wordcloud') }}">词云图</a> </li>
+                                <li><a href="{{ url_for('pie') }}">报道的新闻与事件是否存在关系？</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">总结
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('grid') }}">Grid 类</a> </li>
-                                <li><a href="{{ url_for('overlap') }}">Overlap 类</a> </li>
-                                <li><a href="{{ url_for('timeline') }}">Timeline 类</a> </li>
+                                <li><a href="{{ url_for('conclusion') }}">总结</a> </li>
                             </ul>
                         </a>
                     </li>

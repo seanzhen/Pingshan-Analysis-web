@@ -297,3 +297,8 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template("500.html"), 500
+
+@app.route("/conclusion")
+def conclusion():
+    return render_template('conclusion.html',
+                           title='总结')
