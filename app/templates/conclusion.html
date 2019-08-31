@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset=utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/github-markdown.css')}}" type="text/css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+    <article class="markdown-body ">
+        <h1>总结</h1>
+        <h2>关于作品</h2>
+        <p>从数据可视化的角度了解数据各个维度之后，从事件的结案耗时、关联规则，社区之间的相关性和新闻与事件的联系的角度着手分析，得到：</p>
+        <ul>
+            <li>根据事件的基本信息对事件出现超时结案的可能性进行预测，可有助于相关部门做好预防工作，优化人员部署，提高居民满意度。我们训练的XGBoost模型，对超时结案事件的精确率达到了91%，召回率达到了78%；对按时结案事件的精确率达到了81%，召回率达到了92%。</li>
+            <li>根据关联规则分析，对社区根据事件划分，得到不同社区之内的显著的关联规则，有助于关联事件类似的社区相互交流事件处理方案。</li>
+            <li>根据聚类结果和原始数据构建决策树，其中决策树的结果可以看到通过“环保水务“、“市政设施“或“组织人事”、”市政设施“两个字段组合能够很好的划分所有的社区。</li>
+        </ul>
+        </p>
+
+        <h2>感想</h2>
+        <p>分析后我们建议，在新闻报道中可以更多对民生问题进行跟进，让居民群众更及时准确地了解到坪山区政府及街道对民生问题的重视度及高效的解决能力。对政府部门内部而言，可以加强相关部门间民生问题的沟通联系，建立统一的沟通平台，随时跟进更新问题动态，从而更快速准确地进行反馈。</p>
+    </article>
+    <footer class="container-fluid foot-wrap">
+        <p align="center" style="margin-top: 20px;color:#878B91;">
+            Copyright &copy; 2019 Sean Zhen
+        </p>
+    </footer>
+{% endblock %}
