@@ -302,3 +302,8 @@ def page_not_found(e):
 def conclusion():
     return render_template('conclusion.html',
                            title='总结')
+
+@app.route("/overtime")
+def overtime():
+    return render_template('overtime.html',
+                           title='超时预测')

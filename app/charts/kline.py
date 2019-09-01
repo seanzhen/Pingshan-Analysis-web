@@ -3,7 +3,6 @@ import pandas as pd
 from pyecharts import Bar, Page, Style, Pie, Line, HeatMap,Timeline
 from collections import defaultdict
 
-
 def create_charts():
     page = Page()
     style = Style(

@@ -5,8 +5,8 @@ from . import bar3d
 from . import boxplot  #
 from . import funnel
 from . import gauge
-from . import geo
-from . import geolines
+from . import geo #
+from . import geolines #
 from . import graph
 from . import heatmap
 from . import kline  #

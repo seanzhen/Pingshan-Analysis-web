@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset=utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/github-markdown.css')}}" type="text/css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+    <article class="markdown-body ">
+        <h1>超期办结预测</h1>
+        <h2>超期分析</h2>
+        <p>我们认为，事件是否按时结案体现了一个部门的响应速度和工作效率，是体现坪山区民生综合水平的一个重要指标，也是居民最能感受到的一种服务质量。因此，我们通过机器学习模型XGBoost进行了分类建模，旨在通过事件的基本信息预测事件出现超时结案的可能性，有利于相关部门做好预防工作，优化人员部署，提高居民满意度。</p>
+        <ul>
+            <li><a href="{{ url_for('geolines') }}">事件超期办结分析</a></li>
+        </ul>
+        <p>我们对不同事件类型（一级类别）进行了统计，计算出每个类别超时结案数量的比例。我们发现治安稳健类事件最容易出现超时结案，而文体旅游类事件的响应速度最快。</p>
+
+        </p>
+
+        <h2>数据建模</h2>
+        <p>在建模方面：</p>
+        <ul>
+            <li>我们以社区、处理部门、事件一级类别，事件二级类别，事件三级类别，来源渠道，街道等作为特征，以是否按时结案最为标签。</li>
+            <li>通过LabelEncoder对特征进行了转化，将各特征不规则的ID转化为了[0,1,2,…]，同时使用了OneHotEncoder，将各特征的每一值是否出现表示为[0,1]，特征数量从10维提高到了932维。</li>
+            <li>同时由于正负样本数据分布非常不平衡，正样本（按时结案）有32314条，而负样本（超时结案）只有3003条，因此我们使用了upsampling中的基于k领域和距离的SMOTE算法，增加了大量负样本直到正负样本均有32314条，以确保模型不发生倾斜。</li>
+        </ul>
+        <p>我们训练的XGBoost模型，在测试集中的表现较好，总准确率达到了85%。对超时结案事件的精确率达到了91%，召回率达到了78%；对按时结案事件的精确率达到了81%，召回率达到了92%。</p>
+
+        <table border="0">
+          <tr>
+            <th></th>
+            <th>precision</th>
+            <th>recall</th>
+            <th>f1-score</th>
+          </tr>
+          <tr>
+            <td>0.0 (Overtime)</td>
+            <td>0.91</td>
+            <td>0.78</td>
+            <td>0.84</td>
+          </tr>
+          <tr>
+            <td>1.0 (Intime)</td>
+            <td>0.81</td>
+            <td>0.92</td>
+            <td>0.86</td>
+          </tr>
+          <tr>
+            <td>AUC</td>
+            <td colspan="3" align="center" valign="middle">0.91</td>
+          </tr>
+        </table>
+        <table border="0">
+          <tr>
+            <td>Accuracy</td>
+            <td colspan="3" align="center" valign="middle">0.8497</td>
+          </tr>
+          <tr>
+            <td>macro avg</td>
+            <td>0.86</td>
+            <td>0.85</td>
+            <td>0.85</td>
+          </tr>
+          <tr>
+            <td>weighted avg</td>
+            <td>0.86</td>
+            <td>0.85</td>
+            <td>0.85</td>
+          </tr>
+        </table>
+
+    </article>
+    <footer class="container-fluid foot-wrap">
+        <p align="center" style="margin-top: 20px;color:#878B91;">
+            Copyright &copy; 2019 Sean Zhen
+        </p>
+    </footer>
+{% endblock %}

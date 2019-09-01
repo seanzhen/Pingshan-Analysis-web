@@ -1,6 +1,6 @@
 import math
-
-from pyecharts import Line3D, Page, Style
+import pandas as pd
+from pyecharts import Line3D, Page, Style,Scatter3D
 from app.charts.constants import RANGE_COLOR, WIDTH, HEIGHT
 
 
@@ -10,29 +10,19 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
-    _data = []
-    for t in range(0, 25000):
-        _t = t / 1000
-        x = (1 + 0.25 * math.cos(75 * _t)) * math.cos(_t)
-        y = (1 + 0.25 * math.cos(75 * _t)) * math.sin(_t)
-        z = _t + 2.0 * math.sin(75 * _t)
-        _data.append([x, y, z])
-    chart = Line3D("3D 折线图-默认", **style.init_style)
-    chart.add("", _data, is_visualmap=True, visual_range_color=RANGE_COLOR,
-              visual_range=[0, 30], grid3d_rotate_sensitivity=5)
-    page.add(chart)
+    df = pd.read_csv(
+        'C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\处置部门关联规则.csv')
 
-    _data = []
-    for t in range(0, 25000):
-        _t = t / 1000
-        x = (1 + 0.25 * math.cos(75 * _t)) * math.cos(_t)
-        y = (1 + 0.25 * math.cos(75 * _t)) * math.sin(_t)
-        z = _t + 2.0 * math.sin(75 * _t)
-        _data.append([x, y, z])
-    chart = Line3D("3D 折线图-自动旋转", **style.init_style)
-    chart.add("", _data, is_visualmap=True, visual_range_color=RANGE_COLOR,
-              visual_range=[0, 30], is_grid3d_rotate=True,
-              grid3d_rotate_speed=180)
+    x_list = list(df['lhs'].values)
+    y_list = list(df['rhs'].values)
+    value = list(df['conf'])
+    data = [
+        [x_list[i],
+         y_list[i],
+         float(value[i])] for i in range(len(x_list))
+    ]
+    chart = Scatter3D("PCA & K-means", **style.init_style)
+    chart.add('', data, is_visualmap=True, visual_range_color=RANGE_COLOR)
     page.add(chart)
 
     return page

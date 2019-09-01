@@ -1,66 +1,26 @@
-from pyecharts import GeoLines, Style, Page
+from pyecharts import Bar, HeatMap,Timeline, Page, Style,Line
+from app.charts.constants import HEIGHT, WIDTH
+import pandas as pd
+from collections import defaultdict
 
-
-style = Style(
-    title_top="#fff",
-    title_pos = "center",
-    width=1200,
-    height=600,
-    background_color="#404a59"
-)
-
-style_geo = style.add(
-    is_label_show=True,
-    line_curve=0.2,
-    line_opacity=0.6,
-    legend_text_color="#eee",
-    legend_pos="right",
-    geo_effect_symbol="plane",
-    geo_effect_symbolsize=15,
-    label_color=['#a6c84c', '#ffa022', '#46bee9'],
-    label_pos="right",
-    label_formatter="{b}",
-    label_text_color="#eee",
-)
 
 
 def create_charts():
     page = Page()
-
-    data_guangzhou = [
-        ["广州", "上海"],
-        ["广州", "北京"],
-        ["广州", "南京"],
-        ["广州", "重庆"],
-        ["广州", "兰州"],
-        ["广州", "杭州"]
-    ]
-    data_beijing = [
-        ["北京", "上海"],
-        ["北京", "广州"],
-        ["北京", "南京"],
-        ["北京", "重庆"],
-        ["北京", "兰州"],
-        ["北京", "杭州"]
-    ]
-
-    charts = GeoLines("GeoLines-默认示例", **style.init_style)
-    charts.add("从广州出发", data_guangzhou, is_legend_show=False)
-    page.add(charts)
-
-    charts = GeoLines("GeoLines-稍加配置", **style.init_style)
-    charts.add("从广州出发", data_guangzhou, **style_geo)
-    page.add(charts)
-
-    charts = GeoLines("GeoLines-多例模式", **style.init_style)
-    charts.add("从广州出发", data_guangzhou, **style_geo)
-    charts.add("从北京出发", data_beijing, **style_geo)
-    page.add(charts)
-
-    charts = GeoLines("GeoLines-单例模式", **style.init_style)
-    charts.add("从广州出发", data_guangzhou, **style_geo)
-    charts.add("从北京出发", data_beijing,
-               legend_selectedmode="single", **style_geo)
-    page.add(charts)
+    style = Style(
+        width=WIDTH, height=HEIGHT
+    )
+    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    table6 = pd.pivot_table(df, values=['DISPOSE_UNIT_NAME'], index=['INTIME_ARCHIVE_NUM'],
+                            columns=['EVENT_TYPE_NAME'], aggfunc='count', fill_value=0)
+    table6_2 = table6 / table6.sum()
+    name = [i[1] for i in table6_2]
+    value = [float(table6_2.values[0][j]) for j in range(len(name))]
+    chart = Bar("超时结案", **style.init_style)
+    chart.add("", name, value,
+              is_datazoom_show=True,
+              mark_line=["average"],is_stack=True,
+              datazoom_type='both',datazoom_range=[10, 60])
+    page.add(chart)
 
     return page
