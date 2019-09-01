@@ -34,7 +34,6 @@ def create_charts():
     page.add(chart)
     week_count = defaultdict(int)
     for i in week_ts.index:
-        print(i)
         week_count[i] = week_ts[i]
     chart = Line("各周事件数", **style.init_style)
     chart.add("事件数", list(week_count.keys()), list(week_count.values()),
