@@ -10,14 +10,14 @@ def hello():
                            title='首页')
 
 
-@app.route('/bar')
-def bar():
-    _bar = charts.bar.create_charts()
+@app.route('/event_type')
+def event_type():
+    _event_type= charts.event_type.create_charts()
     return render_template('base.html',
-                           title='柱状图',
-                           source_file='bar',
-                           myechart=_bar.render_embed(),
-                           script_list=_bar.get_js_dependencies())
+                           title='事件类型',
+                           source_file='event_type',
+                           myechart=_event_type.render_embed(),
+                           script_list=_event_type.get_js_dependencies())
 
 
 @app.route('/bar3d')
@@ -34,7 +34,7 @@ def bar3d():
 def boxplot():
     _boxplot = charts.boxplot.create_charts()
     return render_template('base.html',
-                           title='箱线图',
+                           title='社区街道与事件',
                            source_file='boxplot',
                            myechart=_boxplot.render_embed(),
                            script_list=_boxplot.get_js_dependencies())
@@ -44,7 +44,7 @@ def boxplot():
 def effectscatter():
     _es = charts.effectscatter.create_charts()
     return render_template('base.html',
-                           title='动态散点图',
+                           title='事件趋势',
                            source_file='effectscatter',
                            myechart=_es.render_embed(),
                            script_list=_es.get_js_dependencies())

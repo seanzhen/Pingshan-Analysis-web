@@ -1,8 +1,12 @@
 import random
-
+from collections import defaultdict, Counter
 from pyecharts import Pie, Page, Style
 from app.charts.constants import WIDTH, HEIGHT
-
+import numpy as np
+import pandas as pd
+import re
+import datetime
+df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
 
 def create_charts():
     page = Page()
@@ -10,7 +14,7 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
-
+    a = df.EVENT_PROPERTY_NAME.value_counts() / len(df.EVENT_PROPERTY_NAME)
     attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
     v1 = [11, 12, 13, 10, 10, 10]
     chart = Pie("饼图示例", **style.init_style)
@@ -26,13 +30,11 @@ def create_charts():
 
     attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
     v1 = [11, 12, 13, 10, 10, 10]
-    v2 = [19, 21, 32, 20, 20, 33]
-    chart = Pie("饼图-玫瑰图示例", title_pos='center', **style.init_style)
-    chart.add("商品A", attr, v1, center=[25, 50], is_random=True,
-              radius=[30, 75], rosetype='radius')
-    chart.add("商品B", attr, v2, center=[75, 50], is_random=True,
-              radius=[30, 75], rosetype='area',
-              is_legend_show=False, is_label_show=True)
+    chart = Pie("投诉事件类型占比", title_pos='center', **style.init_style)
+    chart.add("", a.index, a.values, center=[50, 60], is_random=True,
+              radius=[40, 55], rosetype='radius',is_label_show=True,
+              legend_pos='left')
+
     page.add(chart)
 
     chart = Pie("饼图示例", title_pos='center', **style.init_style)

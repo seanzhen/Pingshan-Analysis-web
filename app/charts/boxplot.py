@@ -1,6 +1,7 @@
-from pyecharts import Boxplot, Page, Style
+from pyecharts import Bar, Page, Style, Timeline, HeatMap
 from app.charts.constants import WIDTH, HEIGHT
-
+import pandas as pd
+from collections import defaultdict
 
 def create_charts():
     page = Page()
@@ -9,38 +10,39 @@ def create_charts():
         width=WIDTH, height=HEIGHT
     )
 
-    chart = Boxplot("箱形图-单图例", **style.init_style)
-    x_axis = ['expr1', 'expr2', 'expr3', 'expr4', 'expr5']
-    y_axis = [
-        [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880,
-         1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
-        [960, 940, 960, 940, 880, 800, 850, 880, 900, 840,
-         830, 790, 810, 880, 880, 830, 800, 790, 760, 800],
-        [880, 880, 880, 860, 720, 720, 620, 860, 970, 950,
-         880, 910, 850, 870, 840, 840, 850, 840, 840, 840],
-        [890, 810, 810, 820, 800, 770, 760, 740, 750, 760,
-         910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
-        [890, 840, 780, 810, 760, 810, 790, 810, 820, 850,
-         870, 870, 810, 740, 810, 940, 950, 800, 810, 870]
-    ]
-    _yaxis = chart.prepare_data(y_axis)
-    chart.add("boxplot", x_axis, _yaxis)
+    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+
+    COMMUNITY_NAME = df.COMMUNITY_NAME.value_counts()
+    chart = Bar("社区种类", **style.init_style)
+    chart.add("", COMMUNITY_NAME.index, COMMUNITY_NAME.values,
+              mark_point=["max", "min"], is_datazoom_show=True,
+              mark_line=["average"], is_stack=True,
+              datazoom_range=[0, 50])
     page.add(chart)
 
-    chart = Boxplot("箱形图-多图例", **style.init_style)
-    x_axis = ['expr1', 'expr2']
-    y_axis1 = [
-        [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880,
-         1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
-        [960, 940, 960, 940, 880, 800, 850, 880, 900, 840,
-         830, 790, 810, 880, 880, 830, 800, 790, 760, 800]]
-    y_axis2 = [
-        [890, 810, 810, 820, 800, 770, 760, 740, 750, 760,
-         910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
-        [890, 840, 780, 810, 760, 810, 790, 810, 820, 850,
-         870, 870, 810, 740, 810, 940, 950, 800, 810, 870]]
-    chart.add("category1", x_axis, chart.prepare_data(y_axis1))
-    chart.add("category2", x_axis, chart.prepare_data(y_axis2))
+    chart = Timeline(is_auto_play=True, timeline_bottom=0,
+                     width=WIDTH, height=HEIGHT)
+    for name, c in df.groupby('COMMUNITY_NAME'):
+        EVENT_TYPE_NAME = c.EVENT_TYPE_NAME.value_counts()
+        chart_1 = Bar("各社区事件类型", **style.init_style)
+        chart_1.add("", EVENT_TYPE_NAME.index, EVENT_TYPE_NAME.values,
+                    mark_point=["max", "min"],
+                    mark_line=["average"], is_stack=True)
+        chart.add(chart_1, name)
     page.add(chart)
+
+    table = pd.pivot_table(df, index=['COMMUNITY_NAME'], columns=['EVENT_TYPE_NAME'], values=['SUB_TYPE_NAME'],
+                            aggfunc='count', fill_value=0, margins=1)
+    table = table.ix[:-1, :-1]
+    comm = list(table.index)
+    name = [i[1] for i in table]
+    value = [[i, j, float(table.values[i][j])] for i in range(len(comm)) for j in range(len(name))]
+
+    chart = HeatMap("社区与事件热力图", width=WIDTH, height=HEIGHT)
+    chart.add("", comm, name, value, is_visualmap=True,
+              visual_text_color="#000", visual_orient='horizontal')
+    page.add(chart)
+
+
 
     return page

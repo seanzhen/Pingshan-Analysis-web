@@ -27,33 +27,44 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据探索性分析
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">事件类型
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('bar') }}">事件类型</a> </li>
-                                <li><a href="{{ url_for('boxplot') }}">社区街道与事件</a> </li>
-                                <li><a href="{{ url_for('kline') }}">事件趋势</a> </li>
-                                <li><a href="{{ url_for('scatter') }}">各社区事件趋势</a> </li>
+                                <li><a href="{{ url_for('event_type') }}">事件类型分析</a> </li>
                             </ul>
                         </a>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">事件数量
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('boxplot') }}">社区与事件</a> </li>
+                                <li><a href="{{ url_for('funnel') }}">街道与事件</a> </li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">时间趋势
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('kline') }}">事件趋势</a> </li>
+                                <li><a href="{{ url_for('scatter') }}">社区与事件</a> </li>
+                                <li><a href="{{ url_for('scatter3d') }}">街道与事件</a> </li>
+                                <li><a href="{{ url_for('gauge') }}">投诉渠道与事件</a> </li>
+                                <li><a href="{{ url_for('line') }}">处理部门与事件</a> </li>
+                            </ul>
+                        </a>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">超时预测
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('polar') }}">XGBoost模型</a> </li>
+                                <li><a href="{{ url_for('geo') }}">何种事件最可能超时结案？</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关联分析
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">相关性分析
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('bar3d') }}">Apriori关联规则</a> </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">社区聚类
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('geo') }}">K-means聚类</a> </li>
+                                <li><a href="{{ url_for('geo') }}">事件关联规则分析</a> </li>
+                                <li><a href="{{ url_for('geo') }}">社区聚类分析</a> </li>
                             </ul>
                         </a>
                     </li>

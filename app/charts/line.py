@@ -1,8 +1,11 @@
-import random
-import math
-
-from pyecharts import Line, Page, Style
-from app.charts.constants import WIDTH, HEIGHT
+from pyecharts import Bar, HeatMap,Timeline, Page, Style,Line
+from app.charts.constants import HEIGHT, WIDTH
+import pandas as pd
+from collections import defaultdict
+import re
+def deletekh(s):
+    a = re.sub(u"\\（.*?\\）", "", s)
+    return a
 
 
 def create_charts():
@@ -11,65 +14,34 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
+    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df['CREATE_TIME'] = pd.to_datetime(df['CREATE_TIME'])
+    df['MONTH'] = 0
+    months = []
+    for i in df.CREATE_TIME:
+        month = i.strftime("%Y-%m")
+        months.append(month)
+    df.MONTH = months
+    df['DISPOSE_UNIT_NAME_DIST'] = 0
+    df['DISPOSE_UNIT_NAME_DIST'] = df['DISPOSE_UNIT_NAME'].apply(deletekh)
 
-    attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    v1 = [5, 20, 36, 10, 10, 100]
-    v2 = [55, 60, 16, 20, 15, 80]
-    chart = Line("折线图-默认标记", **style.init_style)
-    chart.add("商家A", attr, v1, mark_point=["average"])
-    chart.add("商家B", attr, v2, is_smooth=True,
-              mark_line=["max", "average"], is_more_utils=True)
+    DISPOSE_UNIT_NAME_DIST = df.DISPOSE_UNIT_NAME_DIST.value_counts()
+    chart = Bar("处理部门", **style.init_style)
+    chart.add("", DISPOSE_UNIT_NAME_DIST.index, DISPOSE_UNIT_NAME_DIST.values,
+              mark_point=["max", "min"],is_datazoom_show=True,datazoom_range=[0,30],
+              mark_line=["average"], is_stack=True)
     page.add(chart)
 
-    chart = Line("折线图-自定义标记", **style.init_style)
-    chart.add("商家A", attr, v1,
-              mark_point=["average", {
-                  "coord": ["裤子", 10], "name": "这是我想要的第一个标记点"}])
-    chart.add("商家B", attr, v2, is_smooth=True, is_more_utils=True,
-              mark_point=[{
-                  "coord": ["袜子", 80], "name": "这是我想要的第二个标记点"}])
+    chart = Timeline(is_auto_play=True, timeline_bottom=0,
+                     width=WIDTH, height=HEIGHT)
+    for month, group in df.groupby('MONTH'):
+        DISPOSE_UNIT_NAME = group.DISPOSE_UNIT_NAME_DIST.value_counts()
+        chart_1 = Bar("处理部门事件数", **style.init_style)
+        chart_1.add("", DISPOSE_UNIT_NAME.index, DISPOSE_UNIT_NAME.values,
+                  mark_point=["max", "min"],
+                  mark_line=["average"], is_stack=True)
+        chart.add(chart_1,month)
     page.add(chart)
 
-    chart = Line("折线图-标记图标", **style.init_style)
-    chart.add("商家A", attr, v1, mark_point=["average", "max", "min"],
-              mark_point_symbol='diamond', mark_point_textcolor='#40ff27')
-    chart.add("商家B", attr, v2, mark_point=["average", "max", "min"],
-              mark_point_symbol='arrow', mark_point_symbolsize=40)
-    page.add(chart)
-
-    attr = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    chart = Line("折线图-某地气温", **style.init_style)
-    chart.add("最高气温", attr, [11, 11, 15, 13, 12, 13, 10],
-              mark_point=["max", "min"], mark_line=["average"])
-    chart.add("最低气温", attr, [1, -2, 2, 5, 3, 2, 0],
-              mark_point=["max", "min"], mark_line=["average"])
-    page.add(chart)
-
-    attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    v1 = [5, 20, 36, 10, 10, 100]
-    v2 = [55, 60, 16, 20, 15, 80]
-    chart = Line("折线图-数据堆叠", **style.init_style)
-    chart.add("商家A", attr, v1, is_stack=True, is_label_show=True)
-    chart.add("商家B", attr, v2, is_stack=True, is_label_show=True)
-    page.add(chart)
-
-    chart = Line("折线图-阶梯图", **style.init_style)
-    chart.add("商家A", attr, v1, is_step=True, is_label_show=True)
-    page.add(chart)
-
-    chart = Line("折线图-面积图", **style.init_style)
-    chart.add("商家A", attr, v1, is_fill=True, line_opacity=0.2,
-              area_opacity=0.4, symbol=None)
-    chart.add("商家B", attr, v2, is_fill=True, area_color='#000',
-              area_opacity=0.3, is_smooth=True)
-    page.add(chart)
-
-    chart = Line("折线图-对数坐标轴", width=WIDTH, height=HEIGHT)
-    chart.add("商家A", attr,
-              [math.log10(random.randint(1, 99999)) for _ in range(6)])
-    chart.add("商家B", attr,
-              [math.log10(random.randint(1, 99999999)) for _ in range(6)],
-              yaxis_type="log")
-    page.add(chart)
 
     return page
