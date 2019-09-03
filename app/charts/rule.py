@@ -9,7 +9,7 @@ def create_charts():
     )
 
     df = pd.read_csv(
-        'C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\处置部门关联规则.csv')
+        'C:\\Users\\seanz\\Documents\\WORKFILE\CUHKSZ\\Data Mining\\project\\决赛\\Pingshan-Analysis-web\\rule_file\\处置部门关联规则.csv')
 
     x_list = list(df['lhs'].values)
     y_list = list(df['rhs'].values)
@@ -30,8 +30,8 @@ def create_charts():
     for j in range(len(x_list)):
         links.append({"source": x_list[j], "target": y_list[j]})
 
-    print(nodes)
-    print(links)
+    # print(nodes)
+    # print(links)
     chart = Graph("关联规则", **style.init_style)
     chart.add("", nodes, links,  label_pos="right", graph_repulsion=1000,
               is_legend_show=False, line_curve=0.2, label_text_color=None)
@@ -45,9 +45,9 @@ def create_charts():
     links = []
     categories = []
     for name in comm_name:
-        print(name)
+        # print(name)
         df = pd.read_csv(
-            'C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\'+name+'.csv')
+            'C:\\Users\\seanz\\Documents\\WORKFILE\CUHKSZ\\Data Mining\\project\\决赛\\Pingshan-Analysis-web\\rule_file\\'+name+'.csv')
         x_list = list(df['lhs'].values)
         y_list = list(df['rhs'].values)
         all_list = []
@@ -55,7 +55,7 @@ def create_charts():
         all_list.extend(y_list)
         all_list = list(set(all_list))
         for i in range(len(all_list)):
-            print(all_list[i])
+            # print(all_list[i])
             nodes.append({"name": name+all_list[i],
                           "symbolSize": 10,
                           "draggable": "False",

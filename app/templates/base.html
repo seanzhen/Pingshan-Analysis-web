@@ -36,19 +36,19 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">事件数量
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('boxplot') }}">社区与事件</a> </li>
-                                <li><a href="{{ url_for('funnel') }}">街道与事件</a> </li>
+                                <li><a href="{{ url_for('comm') }}">社区与事件</a> </li>
+                                <li><a href="{{ url_for('street') }}">街道与事件</a> </li>
                             </ul>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">时间趋势
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('kline') }}">事件趋势</a> </li>
-                                <li><a href="{{ url_for('scatter') }}">社区与事件</a> </li>
-                                <li><a href="{{ url_for('scatter3d') }}">街道与事件</a> </li>
-                                <li><a href="{{ url_for('gauge') }}">投诉渠道与事件</a> </li>
-                                <li><a href="{{ url_for('line') }}">处理部门与事件</a> </li>
+                                <li><a href="{{ url_for('trend') }}">事件趋势</a> </li>
+                                <li><a href="{{ url_for('comm_trend') }}">社区与事件</a> </li>
+                                <li><a href="{{ url_for('street_trend') }}">街道与事件</a> </li>
+                                <li><a href="{{ url_for('src_event') }}">投诉渠道与事件</a> </li>
+                                <li><a href="{{ url_for('rec_event') }}">处理部门与事件</a> </li>
                             </ul>
                         </a>
                     </li>
@@ -63,8 +63,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">相关性分析
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('graph') }}">事件关联规则分析</a> </li>
-                                <li><a href="{{ url_for('geo') }}">社区聚类分析</a> </li>
+                                <li><a href="{{ url_for('rule') }}">事件关联规则分析</a> </li>
+                                <li><a href="{{ url_for('cluster') }}">社区聚类分析</a> </li>
                             </ul>
                         </a>
                     </li>
