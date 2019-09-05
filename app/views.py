@@ -144,3 +144,8 @@ def conclusion():
 def overtime():
     return render_template('overtime.html',
                            title='超时预测')
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template('dashboard.html',
+                           title='dashboard')

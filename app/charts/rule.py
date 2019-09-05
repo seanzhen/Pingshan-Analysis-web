@@ -9,7 +9,7 @@ def create_charts():
     )
 
     df = pd.read_csv(
-        'C:\\Users\\seanz\\Documents\\WORKFILE\CUHKSZ\\Data Mining\\project\\决赛\\Pingshan-Analysis-web\\rule_file\\处置部门关联规则.csv')
+        './处置部门关联规则.csv')
 
     x_list = list(df['lhs'].values)
     y_list = list(df['rhs'].values)
@@ -47,7 +47,7 @@ def create_charts():
     for name in comm_name:
         # print(name)
         df = pd.read_csv(
-            'C:\\Users\\seanz\\Documents\\WORKFILE\CUHKSZ\\Data Mining\\project\\决赛\\Pingshan-Analysis-web\\rule_file\\'+name+'.csv')
+            './'+name+'.csv')
         x_list = list(df['lhs'].values)
         y_list = list(df['rhs'].values)
         all_list = []

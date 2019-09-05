@@ -10,7 +10,7 @@ def create_charts():
         width=WIDTH, height=HEIGHT
     )
 
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df = pd.read_csv('./data_cleaned.csv')
 
     COMMUNITY_NAME = df.COMMUNITY_NAME.value_counts()
     chart = Bar("社区种类", **style.init_style)

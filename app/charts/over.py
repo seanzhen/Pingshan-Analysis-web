@@ -10,7 +10,7 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df = pd.read_csv('./data_cleaned.csv')
     table6 = pd.pivot_table(df, values=['DISPOSE_UNIT_NAME'], index=['INTIME_ARCHIVE_NUM'],
                             columns=['EVENT_TYPE_NAME'], aggfunc='count', fill_value=0)
     table6_2 = table6 / table6.sum()

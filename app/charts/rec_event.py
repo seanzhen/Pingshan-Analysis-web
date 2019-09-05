@@ -14,7 +14,7 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df = pd.read_csv('./data_cleaned.csv')
     df['CREATE_TIME'] = pd.to_datetime(df['CREATE_TIME'])
     df['MONTH'] = 0
     months = []

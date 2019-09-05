@@ -5,7 +5,7 @@ from app.charts.constants import WIDTH, HEIGHT
 
 import re
 import datetime
-df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+df = pd.read_csv('./data_cleaned.csv')
 
 def create_charts():
     page = Page()

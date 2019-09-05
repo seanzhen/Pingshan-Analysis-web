@@ -9,7 +9,7 @@ def create_charts():
         width=WIDTH, height=HEIGHT
     )
 
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\决赛\\Cluster_Result_Visualization.csv')
+    df = pd.read_csv('./Cluster_Result_Visualization.csv')
     chart = Scatter("PCA & K-means", **style.init_style)
     for name, group in df.groupby('Class'):
         if name == 0:

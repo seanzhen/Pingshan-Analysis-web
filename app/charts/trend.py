@@ -8,7 +8,7 @@ def create_charts():
     style = Style(
         width=WIDTH, height=HEIGHT
     )
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df = pd.read_csv('./data_cleaned.csv')
 
     df['CREATE_TIME'] = pd.to_datetime(df['CREATE_TIME'])
 
@@ -18,8 +18,7 @@ def create_charts():
         month = i.strftime("%Y-%m")
         months.append(month)
     df.MONTH = months
-    data = df.set_index('CREATE_TIME')
-    week_ts = data['COMMUNITY_NAME'].resample('W', how=len)
+
 
     month_count = defaultdict(int)
     for month, group in df.groupby('MONTH'):
@@ -31,6 +30,8 @@ def create_charts():
               mark_line=["average"], is_smooth=True,
               )
     page.add(chart)
+    data = df.set_index('CREATE_TIME')
+    week_ts = data['COMMUNITY_NAME'].resample('W', how=len)
     week_count = defaultdict(int)
     for i in week_ts.index:
         week_count[i] = week_ts[i]

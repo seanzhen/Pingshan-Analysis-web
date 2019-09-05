@@ -9,7 +9,7 @@ def create_charts():
         width=WIDTH, height=HEIGHT
     )
 
-    df = pd.read_csv('C:\\Users\seanz\\Documents\\WORKFILE\\CUHKSZ\\Data Mining\\project\\data_cleaned.csv')
+    df = pd.read_csv('./data_cleaned.csv')
     STREET_NAME = df.STREET_NAME.value_counts()
     chart = Bar("街道种类", **style.init_style)
     chart.add("", STREET_NAME.index, STREET_NAME.values,
