@@ -15,7 +15,7 @@ def create_charts():
     )
     a = df.EVENT_PROPERTY_NAME.value_counts() / len(df.EVENT_PROPERTY_NAME)
     chart = Pie("事件类型占比", title_pos='center', **style.init_style)
-    chart.add("", a.index, a.values, label_text_color=None, is_random=True,
+    chart.add("", a.index, a.values, label_text_color=None,
               is_label_show=True, legend_pos='left')
     page.add(chart)
 
