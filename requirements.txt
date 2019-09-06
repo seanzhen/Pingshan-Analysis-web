@@ -1,4 +1,7 @@
 Flask==0.12.2
 Flask-Bootstrap==3.3.7.1
 pyecharts==0.5.11
-gunicorn==19.7.1
+pandas
+echarts-china-provinces-pypkg
+echarts-china-cities-pypkg
+echarts-china-counties-pypkg

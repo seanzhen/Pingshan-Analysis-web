@@ -27,9 +27,10 @@ def create_charts():
         month_count = defaultdict(int)
         for month, group in c.groupby('MONTH'):
             month_count[month] = len(group)
-
+        m_s = sorted(list(month_count.keys()))
+        m_l = [month_count[i] for i in m_s]
         chart_1 = Line("各月份事件数", **style.init_style)
-        chart_1.add("事件数", list(month_count.keys()), list(month_count.values()),
+        chart_1.add("事件数", m_s, m_l,
                   mark_point=["max", "min"],is_more_utils=True,
                   mark_line=["average"], is_smooth=True,
                   )
