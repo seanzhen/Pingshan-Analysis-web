@@ -36,8 +36,10 @@ def create_charts():
     week_count = defaultdict(int)
     for i in week_ts.index:
         week_count[i] = week_ts[i]
+    w_s = sorted(list(week_count.keys()))
+    w_l = [week_count[i] for i in w_s]
     chart = Line("各周事件数", **style.init_style)
-    chart.add("事件数", list(week_count.keys()), list(week_count.values()),
+    chart.add("事件数", w_s, w_l,
               mark_point=["max", "min"], is_more_utils=True,
               mark_line=["average"], is_smooth=True,
               )
