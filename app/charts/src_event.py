@@ -19,7 +19,7 @@ def create_charts():
     df.MONTH = months
 
     EVENT_SRC_NAME = df.EVENT_SRC_NAME.value_counts()
-    chart = Bar("社区种类", **style.init_style)
+    chart = Bar("投诉渠道种类", **style.init_style)
     chart.add("", EVENT_SRC_NAME.index, EVENT_SRC_NAME.values,
               mark_point=["max", "min"],
               mark_line=["average"], is_stack=True)
